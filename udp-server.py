@@ -1,5 +1,6 @@
 import socket
 import os
+from faker import Faker
 
 sock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
 
@@ -24,5 +25,6 @@ while True:
     print(data)
 
     if data:
-        sent = sock.sendto(data, address)
+        fake = Faker()
+        sent = sock.sendto(fake.name().encode(), address)
         print('Server: sent {} bytes back to {}'.format(sent, address))
